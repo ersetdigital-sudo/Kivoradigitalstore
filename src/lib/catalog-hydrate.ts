@@ -17,7 +17,9 @@ function hydrateProduct(product: Product, dbService: CatalogService): Product {
   const items = product.items.map((item, index) => {
     const dbProduct =
       dbService.products.find(
-        (candidate) => candidate.nama === `${product.name} · ${item.n}`,
+        (candidate) =>
+          candidate.nama ===
+          `${product.name} · ${item.provider ? `${item.provider} · ` : ""}${item.n}`,
       ) ??
       dbService.products.find((candidate) => candidate.nama === item.n) ??
       dbService.products[index];

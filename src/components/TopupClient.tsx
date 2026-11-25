@@ -9,7 +9,17 @@ import { ProductArt } from "@/components/ProductArt";
 import { formatRp, type Item, type Product } from "@/lib/catalog";
 import { createOrder } from "@/lib/db/client";
 import { toPublicError } from "@/lib/db/errors";
+import { detectOperator } from "@/lib/operator";
 import { rememberInvoice } from "@/lib/store";
+
+/** Angka dan satuannya ("2 GB", "30 hari") tidak boleh terpisah antar baris. */
+const keepTogether = (text: string) => text.replace(/(\d)\s(GB|MB|hari)\b/g, "$1\u00a0$2");
+
+/** "Freedom Internet 6 GB · 2 hari" -> nama paket + masa aktif. */
+function splitPack(label: string): [string, string] {
+  const at = label.lastIndexOf(" · ");
+  return at < 0 ? [label, ""] : [label.slice(0, at), label.slice(at + 3)];
+}
 
 export function TopupClient({
   product,
@@ -29,18 +39,31 @@ export function TopupClient({
   const [uid, setUid] = useState(prefill);
   const [zone, setZone] = useState(product.server ? product.server[0] : "");
   const [provider, setProvider] = useState<string | null>(null);
-  const [item, setItem] = useState<Item | null>(null);
+  const [picked, setPicked] = useState<Item | null>(null);
   const [paying, setPaying] = useState(false);
   const [payError, setPayError] = useState("");
 
   const zoneRequired = !!product.zone || !!product.server;
+
+  // Paket Data: operator ditebak dari nomor, paket yang tampil hanya milik operator itu.
+  const byOperator = slug === "data" && !!product.providers;
+  const detected = byOperator ? detectOperator(uid, product.providers) : null;
+  const activeProvider = provider ?? detected;
+  const visibleItems = byOperator
+    ? product.items.filter((option) => option.provider === activeProvider)
+    : product.items;
+  const item =
+    picked &&
+    visibleItems.some((option) => option.n === picked.n && option.provider === picked.provider)
+      ? picked
+      : null;
   const ready =
     !!item &&
     uid.trim().length >= 4 &&
     (!zoneRequired || zone.trim().length >= 2) &&
-    (!product.providers || !!provider);
+    (!product.providers || !!activeProvider);
   const account = product.providers
-    ? [provider, uid.trim()].filter(Boolean).join(" · ")
+    ? [activeProvider, uid.trim()].filter(Boolean).join(" · ")
     : `${uid.trim()}${zone ? ` (${zone})` : ""}`;
   const total = item?.p ?? 0;
 
@@ -64,7 +87,7 @@ export function TopupClient({
         productId: item.id,
         nomorTujuan: account,
         input: {
-          provider: provider ?? product.name,
+          provider: activeProvider ?? product.name,
           item: item.n,
           nomor_tujuan: account,
           uid: uid.trim(),
@@ -126,7 +149,7 @@ export function TopupClient({
               {product.providers && (
                 <div className="mt-5">
                   <div className="mut mb-2 text-xs font-extrabold uppercase tracking-wide">
-                    Pilih e-wallet
+                    {byOperator ? "Operator" : "Pilih e-wallet"}
                   </div>
                   <div className="mt-2 flex flex-wrap gap-2">
                     {product.providers.map((wallet) => (
@@ -134,7 +157,7 @@ export function TopupClient({
                         key={wallet}
                         type="button"
                         onClick={() => setProvider(wallet)}
-                        className={`chip ${provider === wallet ? "on" : ""}`}
+                        className={`chip ${activeProvider === wallet ? "on" : ""}`}
                       >
                         {wallet}
                       </button>
@@ -148,7 +171,14 @@ export function TopupClient({
               >
                 <input
                   value={uid}
-                  onChange={(event) => setUid(event.target.value)}
+                  onChange={(event) => {
+                    const next = event.target.value;
+                    // Nomor berganti operator -> buang pilihan manual sebelumnya.
+                    if (byOperator && detectOperator(next, product.providers) !== detected) {
+                      setProvider(null);
+                    }
+                    setUid(next);
+                  }}
                   className="in"
                   placeholder={`${product.f}: ${product.ph}`}
                   inputMode={product.phone ? "tel" : "text"}
@@ -183,7 +213,11 @@ export function TopupClient({
                 {product.cat === "game"
                   ? `Cek ${product.f} di profil game kamu. Salah ID = item bisa nyasar.`
                   : product.providers
-                    ? "Pilih e-wallet, lalu masukkan nomor yang terdaftar di aplikasi itu."
+                    ? byOperator
+                      ? activeProvider
+                        ? `Operator ${provider ? "dipilih" : "terdeteksi"}: ${activeProvider}. Salah? Pilih operator yang benar di atas.`
+                        : "Masukkan nomor HP, operatornya terdeteksi otomatis. Bisa juga dipilih manual di atas."
+                      : "Pilih e-wallet, lalu masukkan nomor yang terdaftar di aplikasi itu."
                     : "Pastikan nomor sudah benar sebelum bayar."}
               </p>
             </section>
@@ -194,15 +228,27 @@ export function TopupClient({
                 <h2 className="dsp text-3xl">Pilih nominal</h2>
               </div>
               <div className="mt-6 grid grid-cols-2 gap-3 md:grid-cols-3">
-                {product.items.map((option) => (
+                {byOperator && !activeProvider && (
+                  <div className="mut col-span-full rounded-2xl p-4 text-sm font-semibold" style={{ border: "2.5px dashed var(--ink)" }}>
+                    Masukkan nomor HP di atas dulu, paket data khusus operatormu langsung muncul di sini.
+                  </div>
+                )}
+                {visibleItems.map((option) => (
                   <button
-                    key={option.n}
+                    key={`${option.provider ?? ""}${option.n}`}
                     type="button"
-                    onClick={() => setItem(option)}
-                    className={`sel ${item?.n === option.n ? "on" : ""}`}
+                    onClick={() => setPicked(option)}
+                    className={`sel min-w-0 ${item?.n === option.n && item?.provider === option.provider ? "on" : ""}`}
                   >
                     {option.h && <span className="tag">TERLARIS</span>}
-                    <div className="font-extrabold leading-tight">{option.n}</div>
+                    <div className="font-extrabold leading-tight">
+                      {keepTogether(byOperator ? splitPack(option.n)[0] : option.n)}
+                    </div>
+                    {byOperator && splitPack(option.n)[1] && (
+                      <div className="mt-1 text-xs font-semibold opacity-75">
+                        Masa aktif {keepTogether(splitPack(option.n)[1])}
+                      </div>
+                    )}
                     <div className="mt-2 text-sm font-bold opacity-80">
                       {formatRp(option.p)}
                     </div>
@@ -255,7 +301,7 @@ export function TopupClient({
                   <span>{product.name}</span>
                 </div>
                 <div className="sum-line">
-                  <span className="mut">{product.providers ? "E-wallet" : product.f}</span>
+                  <span className="mut">{product.providers ? (byOperator ? "Operator" : "E-wallet") : product.f}</span>
                   <span>{account || "—"}</span>
                 </div>
                 <div className="sum-line">

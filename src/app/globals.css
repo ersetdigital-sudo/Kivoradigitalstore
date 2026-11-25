@@ -942,3 +942,29 @@ body {
   margin-top: 8px;
   padding: 12px 4px 0;
 }
+
+/* Kartu nominal di layar sempit: angka besar (Rp1.000.000) harus muat dua kolom. */
+@media (max-width: 400px) {
+  .sel {
+    padding: 12px 10px;
+  }
+
+  .sel .font-extrabold {
+    font-size: 14px;
+  }
+}
+
+@media (max-width: 340px) {
+  .sel {
+    padding: 10px 8px;
+  }
+
+  .sel .font-extrabold {
+    font-size: 13px;
+    letter-spacing: -0.01em;
+  }
+
+  .sel .text-sm {
+    font-size: 12.5px;
+  }
+}
