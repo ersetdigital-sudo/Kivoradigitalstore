@@ -1,6 +1,5 @@
 import Link from "next/link";
 import { Hero } from "@/components/Hero";
-import { HomeSearch } from "@/components/HomeSearch";
 import { Icon } from "@/components/Icon";
 import { ProductTile } from "@/components/ProductTile";
 import { formatRp, GAME_KEYS, PPOB_KEYS, PRODUCTS } from "@/lib/catalog";
@@ -40,8 +39,6 @@ export default async function HomePage() {
             <circle cx="50" cy="50" r="48" fill="#fff" />
           </svg>
         </div>
-
-        <HomeSearch />
       </section>
 
       <section className="wrap pt-20">

@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
+import { HeaderSearch } from "./HeaderSearch";
 import { Icon } from "./Icon";
 import { Logo } from "./Logo";
 
@@ -63,9 +64,10 @@ export function SiteHeader() {
             ))}
           </nav>
           <div className="flex items-center gap-2">
+            <HeaderSearch />
             <Link
               href="/game"
-              className="btn btn-pk hidden min-h-[44px] px-5 py-2 sm:inline-flex"
+              className="btn btn-pk hidden min-h-[44px] px-5 py-2 sm:inline-flex lg:hidden xl:inline-flex"
             >
               Top up <Icon name="arrow" className="h-5 w-5" />
             </Link>
