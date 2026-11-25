@@ -10,7 +10,6 @@ import { formatRp, type Item, type Product } from "@/lib/catalog";
 import { createOrder } from "@/lib/db/client";
 import { toPublicError } from "@/lib/db/errors";
 import { detectOperator } from "@/lib/operator";
-import { rememberInvoice } from "@/lib/store";
 
 /** Angka dan satuannya ("2 GB", "30 hari") tidak boleh terpisah antar baris. */
 const keepTogether = (text: string) => text.replace(/(\d)\s(GB|MB|hari)\b/g, "$1\u00a0$2");
@@ -94,14 +93,6 @@ export function TopupClient({
           ...(zone ? { zone } : {}),
         },
         paymentMethodId: qrisMethodId,
-      });
-      rememberInvoice({
-        ref: created.ref,
-        name: product.name,
-        item: item.n,
-        slug,
-        amount: created.total,
-        createdAt: Date.now(),
       });
       router.push(`/bayar?id=${created.ref}`);
     } catch (error) {

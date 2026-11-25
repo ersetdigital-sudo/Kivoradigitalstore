@@ -7,12 +7,7 @@ import { Breadcrumbs } from "@/components/Breadcrumbs";
 import { Icon } from "@/components/Icon";
 import { ProductArt } from "@/components/ProductArt";
 import { formatRp, PRODUCTS } from "@/lib/catalog";
-import {
-  WA_LINK,
-  formatDateTime,
-  loadInvoices,
-  type RecentInvoice,
-} from "@/lib/store";
+import { WA_LINK, formatDateTime } from "@/lib/store";
 
 type PublicStatus = "success" | "processing" | "pending" | "expired";
 
@@ -51,11 +46,6 @@ export function LacakClient() {
   const [active, setActive] = useState(idParam);
   const [result, setResult] = useState<ApiOrder | null | undefined>(undefined);
   const [loading, setLoading] = useState(false);
-  const [invoices, setInvoices] = useState<RecentInvoice[]>([]);
-
-  useEffect(() => {
-    setInvoices(loadInvoices());
-  }, []);
 
   const lookup = useCallback(async (code: string) => {
     if (!code) {
@@ -89,13 +79,6 @@ export function LacakClient() {
     } else {
       window.history.replaceState(null, "", "/lacak");
     }
-  };
-
-  const select = (entry: RecentInvoice) => {
-    show(entry.ref);
-    document
-      .getElementById("hasil")
-      ?.scrollIntoView({ behavior: "smooth", block: "start" });
   };
 
   return (
@@ -141,78 +124,42 @@ export function LacakClient() {
         />
       </div>
 
-      <div className="mt-6 grid items-start gap-6 lg:grid-cols-[1fr_360px]">
-        <div id="hasil" className="min-w-0">
-          {!active ? (
-            <div className="card card-sky p-8 text-center sm:p-10">
-              <div className="wig inline-block text-6xl">🎮</div>
-              <div className="dsp mt-3 text-4xl">Belum ada yang dicek</div>
-              <p className="mt-2 font-semibold">
-                Masukkan kode KVR dari halaman checkout, atau mulai top up dulu.
-              </p>
-              <Link href="/game" className="btn btn-pk mt-6">
-                Mulai top up
-              </Link>
-            </div>
-          ) : loading ? (
-            <div className="card p-8 text-center">
-              <div className="dsp text-4xl">Mencari pesanan…</div>
-            </div>
-          ) : result ? (
-            <OrderResult order={result} />
-          ) : (
-            <div className="card p-8 text-center">
-              <div className="text-6xl">🔍</div>
-              <div className="dsp mt-3 text-4xl">Kode nggak ketemu</div>
-              <p className="mut mt-2 font-semibold">
-                Cek lagi kode <b>{active}</b>. Pastikan kode sesuai dengan pesanan
-                yang sudah dibuat.
-              </p>
-            </div>
-          )}
-        </div>
+      <div id="hasil" className="mt-6 min-w-0">
+        {!active ? (
+          <div className="card card-sky p-8 text-center sm:p-10">
+            <div className="wig inline-block text-6xl">🎮</div>
+            <div className="dsp mt-3 text-4xl">Belum ada yang dicek</div>
+            <p className="mt-2 font-semibold">
+              Masukkan kode KVR dari halaman checkout, atau mulai top up dulu.
+            </p>
+            <Link href="/game" className="btn btn-pk mt-6">
+              Mulai top up
+            </Link>
+          </div>
+        ) : loading ? (
+          <div className="card p-8 text-center">
+            <div className="dsp text-4xl">Mencari pesanan…</div>
+          </div>
+        ) : result ? (
+          <OrderResult order={result} />
+        ) : (
+          <div className="card p-8 text-center">
+            <div className="text-6xl">🔍</div>
+            <div className="dsp mt-3 text-4xl">Kode nggak ketemu</div>
+            <p className="mut mt-2 font-semibold">
+              Cek lagi kode <b>{active}</b>. Pastikan kode sesuai dengan pesanan
+              yang sudah dibuat.
+            </p>
+          </div>
+        )}
 
-        <aside className="card p-6">
-          <div className="dsp text-3xl">Riwayat di perangkat ini</div>
-          <div className="mt-4 space-y-3">
-            {invoices.length ? (
-              invoices.slice(0, 5).map((entry) => (
-                <button
-                  key={entry.ref}
-                  type="button"
-                  onClick={() => select(entry)}
-                  className="flex w-full items-center gap-3 rounded-2xl p-3 text-left hover:bg-[var(--sky2)]"
-                  style={{ border: "2.5px solid var(--ink)" }}
-                >
-                  <div className="min-w-0 flex-1">
-                    <div className="truncate font-extrabold">{entry.name}</div>
-                    <div className="mut text-xs font-semibold">
-                      {entry.ref} · {formatDateTime(entry.createdAt)}
-                    </div>
-                  </div>
-                  <span className="text-sm font-bold">{formatRp(entry.amount)}</span>
-                </button>
-              ))
-            ) : (
-              <p className="mut text-sm font-semibold">Belum ada transaksi.</p>
-            )}
+        {WA_LINK && (
+          <div className="mt-5 text-center">
+            <a href={WA_LINK} target="_blank" rel="noreferrer" className="btn btn-w">
+              <Icon name="chat" /> Tanya status via WhatsApp
+            </a>
           </div>
-          <div
-            className="mt-5 rounded-2xl p-3 text-xs font-semibold leading-relaxed"
-            style={{ background: "var(--yel)", border: "2.5px solid var(--ink)" }}
-          >
-            Status diambil langsung dari server. Log lokal cuma menyimpan kode
-            invoice di browser ini.
-          </div>
-          <a
-            href={WA_LINK}
-            target="_blank"
-            rel="noreferrer"
-            className="btn btn-w mt-3 w-full"
-          >
-            <Icon name="chat" /> Tanya status
-          </a>
-        </aside>
+        )}
       </div>
     </main>
   );
