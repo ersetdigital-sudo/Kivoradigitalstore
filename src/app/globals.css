@@ -1,14 +1,15 @@
 @import "tailwindcss";
 
 :root {
-  --sky: #94deff;
-  --sky2: #c9eeff;
-  --pk: #ff277f;
-  --pk2: #e0156a;
-  --ink: #2a0f2e;
-  --cream: #fff7fb;
-  --mut: #6e5a70;
-  --yel: #ffd23f;
+  --sky: #fdea6f;
+  --sky2: #fff4b8;
+  --pk: #036d9a;
+  --pk2: #02567b;
+  --ink: #062b3e;
+  --cream: #fffbe6;
+  --mut: #4f6b7a;
+  --yel: #bfe3f3;
+  --red: #cf0000;
   --d: var(--font-lilita), system-ui, sans-serif;
   --f: var(--font-jakarta), system-ui, sans-serif;
 }
@@ -122,6 +123,11 @@ body {
     color: #fff;
   }
 
+  .btn-red {
+    background: var(--red);
+    color: #fff;
+  }
+
   .btn-sky {
     background: var(--sky);
     color: var(--ink);
@@ -173,7 +179,8 @@ body {
     padding: 6px 14px;
     border: 2.5px solid var(--ink);
     border-radius: 999px;
-    background: var(--yel);
+    background: var(--red);
+    color: #fff;
     transform: rotate(-4deg);
     box-shadow: 3px 3px 0 var(--ink);
   }
@@ -215,7 +222,7 @@ body {
     position: sticky;
     top: 0;
     z-index: 50;
-    background: rgba(255, 247, 251, 0.9);
+    background: rgba(255, 251, 230, 0.92);
     backdrop-filter: blur(10px);
     -webkit-backdrop-filter: blur(10px);
     border-bottom: 3px solid var(--ink);
@@ -262,9 +269,23 @@ body {
     transform: rotate(-6deg);
   }
 
-  .logo span em {
-    font-style: normal;
+  .logo span {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+
+  .logo span small {
+    font-family: var(--f);
+    font-size: 10.5px;
+    font-weight: 800;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
     color: var(--pk);
+  }
+
+  footer .logo span small {
+    color: var(--sky);
   }
 
   .mnav {
@@ -297,7 +318,7 @@ body {
     background: var(--ink);
     border-radius: 22px;
     padding: 6px;
-    box-shadow: 0 10px 30px -10px rgba(42, 15, 46, 0.6);
+    box-shadow: 0 10px 30px -10px rgba(6, 43, 62, 0.6);
   }
 
   .tabbar a {
@@ -307,7 +328,7 @@ body {
     gap: 2px;
     font-size: 11px;
     font-weight: 700;
-    color: #d9c9db;
+    color: #c4dbe6;
     padding: 8px 0;
     border-radius: 16px;
   }
@@ -380,7 +401,8 @@ body {
     z-index: 2;
     font-size: 11px;
     font-weight: 800;
-    background: var(--yel);
+    background: #fff;
+    color: var(--red);
     border: 2px solid var(--ink);
     border-radius: 999px;
     padding: 3px 9px;
@@ -415,8 +437,8 @@ body {
     right: 10px;
     font-size: 10px;
     font-weight: 800;
-    background: var(--yel);
-    color: var(--ink);
+    background: var(--red);
+    color: #fff;
     border: 2px solid var(--ink);
     border-radius: 999px;
     padding: 1px 8px;

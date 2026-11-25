@@ -40,7 +40,7 @@ export function Hero() {
             <span
               className={`rot ${phase}`}
               style={{
-                color: "var(--pk)",
+                color: "var(--red)",
                 WebkitTextStroke: "3px var(--ink)",
                 paintOrder: "stroke fill",
               }}
@@ -83,7 +83,7 @@ export function Hero() {
           style={{ border: "3px solid var(--ink)", boxShadow: "8px 8px 0 var(--ink)" }}
         >
           <img
-            src="/hero.png"
+            src="/hero.svg"
             alt="Ilustrasi stik game, diamond, dan koin"
             className="h-full w-full scale-[1.05] object-cover"
             width={920}

@@ -16,7 +16,7 @@ export function BrandMark({
   return (
     <span
       className={cn("adm-brandmark", `adm-brandmark-${size}`, className)}
-      style={{ backgroundColor: color || "#3B4FD8" }}
+      style={{ backgroundColor: color || "#036D9A" }}
       aria-hidden={logoUrl ? undefined : true}
     >
       {logoUrl ? (

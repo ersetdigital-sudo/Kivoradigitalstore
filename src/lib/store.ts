@@ -1,8 +1,9 @@
-export const ORDERS_KEY = "ploynora_invoices";
-export const QRIS_IMAGE =
-  "https://res.cloudinary.com/dqjh7utdb/image/upload/v1792161327/camhvfeu1lcm0ps8ieiz.jpg";
-export const ADMIN_WA = "085711172317";
-export const WA_LINK = "https://wa.me/6285711172317";
+export const ORDERS_KEY = "kivoradigitalstore_invoices";
+
+// Nomor CS diisi lewat env NEXT_PUBLIC_WHATSAPP (format internasional tanpa "+").
+const WA_NUMBER = (process.env.NEXT_PUBLIC_WHATSAPP ?? "").replace(/\D/g, "");
+export const ADMIN_WA = WA_NUMBER.startsWith("62") ? `0${WA_NUMBER.slice(2)}` : WA_NUMBER;
+export const WA_LINK = WA_NUMBER ? `https://wa.me/${WA_NUMBER}` : "";
 export const PAID_MESSAGE = "Terima kasih, pembayaran Anda sedang diproses";
 
 export type RecentInvoice = {

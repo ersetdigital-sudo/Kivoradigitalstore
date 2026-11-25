@@ -124,7 +124,7 @@ export function LacakClient() {
             value={query}
             onChange={(event) => setQuery(event.target.value)}
             className="in uppercase"
-            placeholder="Masukkan kode PLY-XXXXXX"
+            placeholder="Masukkan kode KVR-XXXXXX"
             aria-label="Kode pesanan"
           />
           <button type="submit" className="btn btn-sky" disabled={loading}>
@@ -148,7 +148,7 @@ export function LacakClient() {
               <div className="wig inline-block text-6xl">🎮</div>
               <div className="dsp mt-3 text-4xl">Belum ada yang dicek</div>
               <p className="mt-2 font-semibold">
-                Masukkan kode PLY dari halaman checkout, atau mulai top up dulu.
+                Masukkan kode KVR dari halaman checkout, atau mulai top up dulu.
               </p>
               <Link href="/game" className="btn btn-pk mt-6">
                 Mulai top up

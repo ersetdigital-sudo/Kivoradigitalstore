@@ -1887,7 +1887,7 @@ body:has(.admin-root) {
   color: #9a9083;
 }
 
-/* ============ tema Niranova ============ */
+/* ============ tema Kivoradigitalstore ============ */
 
 html:has(.admin-root),
 body:has(.admin-root) {
@@ -1895,28 +1895,28 @@ body:has(.admin-root) {
 }
 
 body:has(.admin-root) {
-  background: #fffafd;
-  color: #2a0f2e;
+  background: #f6fafc;
+  color: #062b3e;
   padding-bottom: 0 !important;
 }
 
 .admin-root {
-  --adm-ink: #2a0f2e;
-  --adm-ink2: #4a2c4f;
-  --adm-muted: #6e5a70;
-  --adm-line: #f0d9e6;
-  --adm-soft: #fff0f7;
-  --adm-bg: #fffafd;
-  --adm-brand: #e0156a;
-  --adm-green: #2e7d5b;
-  --adm-red: #c81e3c;
+  --adm-ink: #062b3e;
+  --adm-ink2: #2c4b5c;
+  --adm-muted: #4f6b7a;
+  --adm-line: #d3e4ec;
+  --adm-soft: #eaf4f9;
+  --adm-bg: #f6fafc;
+  --adm-brand: #036d9a;
+  --adm-green: #1f7a4d;
+  --adm-red: #cf0000;
 }
 
 .admin-root .adm-login-left {
-  background: #2a0f2e;
+  background: #062b3e;
 }
 
 .admin-root .adm-side-brand span,
 .admin-root .adm-nav-label {
-  color: #d8b9cb;
+  color: #9cc3d4;
 }

@@ -21,15 +21,15 @@ const jakarta = Plus_Jakarta_Sans({
 
 export const metadata: Metadata = {
   title: {
-    default: "Ploynora Games · Top up game & isi ulang kilat",
-    template: "%s · Ploynora Games",
+    default: "Kivoradigitalstore · Top up game & isi ulang kilat",
+    template: "%s · Kivoradigitalstore",
   },
   description:
     "Top up Mobile Legends, Free Fire, PUBG, Genshin dan lainnya. Plus pulsa, kuota, e-wallet, dan token PLN. Cepat, aman, tanpa daftar.",
 };
 
 export const viewport: Viewport = {
-  themeColor: "#FFF7FB",
+  themeColor: "#FFFBE6",
   width: "device-width",
   initialScale: 1,
   viewportFit: "cover",

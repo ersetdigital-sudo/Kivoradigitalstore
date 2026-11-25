@@ -77,7 +77,6 @@ export function GameCatalog({ minPrices }: { minPrices: Record<string, number> }
 
       <div className="mb-4 mt-4 flex items-center justify-between">
         <span className="mut text-sm font-bold">{list.length} produk</span>
-        <span className="mut text-xs font-semibold">Harga masih contoh</span>
       </div>
 
       {list.length ? (

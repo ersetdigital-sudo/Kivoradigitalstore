@@ -38,12 +38,12 @@ export function SiteFooter() {
       <div className="wrap grid gap-10 py-14 md:grid-cols-4">
         <div className="md:col-span-2">
           <div className="logo text-white">
-            <b>P</b>
+            <b>K</b>
             <span>
-              ploynora<em>.</em>
+              kivora<small>digitalstore</small>
             </span>
           </div>
-          <p className="mt-4 max-w-sm" style={{ color: "#d9c9db" }}>
+          <p className="mt-4 max-w-sm" style={{ color: "#c4dbe6" }}>
             Tempat top up game dan isi ulang harian yang cepat, aman, dan nggak
             bikin dompet nangis.
           </p>
@@ -52,7 +52,7 @@ export function SiteFooter() {
           <div className="dsp text-xl" style={{ color: "var(--sky)" }}>
             Game
           </div>
-          <div className="mt-3 grid gap-2 text-sm" style={{ color: "#d9c9db" }}>
+          <div className="mt-3 grid gap-2 text-sm" style={{ color: "#c4dbe6" }}>
             {GAME_KEYS.slice(0, 5).map((slug) => (
               <Link key={slug} href={`/topup?g=${slug}`} className="hover:text-white">
                 {PRODUCTS[slug].name}
@@ -64,7 +64,7 @@ export function SiteFooter() {
           <div className="dsp text-xl" style={{ color: "var(--sky)" }}>
             Lainnya
           </div>
-          <div className="mt-3 grid gap-2 text-sm" style={{ color: "#d9c9db" }}>
+          <div className="mt-3 grid gap-2 text-sm" style={{ color: "#c4dbe6" }}>
             <Link href="/game?c=ppob" className="hover:text-white">
               Pulsa &amp; tagihan
             </Link>
@@ -77,8 +77,8 @@ export function SiteFooter() {
           </div>
         </div>
       </div>
-      <div className="wrap pb-8 text-xs" style={{ color: "#a08ea3" }}>
-        © {year} Ploynora Games. Semua merek game milik pemiliknya masing-masing.
+      <div className="wrap pb-8 text-xs" style={{ color: "#8db3c5" }}>
+        © {year} Kivoradigitalstore. Semua merek game milik pemiliknya masing-masing.
       </div>
     </footer>
   );

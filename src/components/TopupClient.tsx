@@ -240,7 +240,7 @@ export function TopupClient({
                 </div>
                 <p className="mut mt-4 text-sm font-semibold">
                   Setelah pesanan dibuat, kode QRIS muncul di halaman pembayaran.
-                  Simpan kode PLY untuk cek status.
+                  Simpan kode KVR untuk cek status.
                 </p>
               </div>
             </section>
@@ -296,7 +296,7 @@ export function TopupClient({
                 {payError
                   ? `⚠ ${payError}`
                   : ready
-                    ? "Kamu akan dapat kode PLY untuk cek status."
+                    ? "Kamu akan dapat kode KVR untuk cek status."
                     : "Isi data akun & pilih nominal dulu ya."}
               </p>
             </div>

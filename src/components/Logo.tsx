@@ -2,10 +2,10 @@ import Link from "next/link";
 
 export function Logo() {
   return (
-    <Link href="/" className="logo" aria-label="Ploynora Games beranda">
-      <b>P</b>
+    <Link href="/" className="logo" aria-label="Kivoradigitalstore beranda">
+      <b>K</b>
       <span>
-        ploynora<em>.</em>
+        kivora<small>digitalstore</small>
       </span>
     </Link>
   );

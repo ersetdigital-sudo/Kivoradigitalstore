@@ -19,7 +19,7 @@ const STEPS = [
   },
   {
     title: "Langsung masuk",
-    body: "Item diproses otomatis. Simpan kode PLY untuk cek status.",
+    body: "Item diproses otomatis. Simpan kode KVR untuk cek status.",
     style: "card-pk",
   },
 ];
@@ -47,7 +47,7 @@ export default async function HomePage() {
       <section className="wrap pt-20">
         <div className="rv flex items-end justify-between gap-4">
           <div>
-            <span className="stk" style={{ background: "var(--sky)" }}>
+            <span className="stk" style={{ background: "var(--sky)", color: "var(--ink)" }}>
               🎮 Lagi rame
             </span>
             <h2 className="dsp mt-4 text-5xl sm:text-6xl">
@@ -80,7 +80,7 @@ export default async function HomePage() {
                 juga bisa.
               </h2>
             </div>
-            <p className="max-w-sm" style={{ color: "#d9c9db" }}>
+            <p className="max-w-sm" style={{ color: "#c4dbe6" }}>
               Pulsa, kuota, saldo e-wallet, sampai token listrik. Satu tempat,
               satu cara bayar.
             </p>

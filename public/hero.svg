@@ -1,0 +1,60 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000" role="img" aria-label="Ilustrasi stik game, diamond, dan koin">
+  <defs>
+    <g id="gem">
+      <path d="M-62 -24 L-30 -62 L30 -62 L62 -24 L0 64 Z" stroke-linejoin="round"/>
+      <path d="M-62 -24 H62 M-30 -62 L-16 -24 L0 64 M30 -62 L16 -24 L0 64" fill="none" stroke-linejoin="round" stroke-width="4"/>
+    </g>
+    <g id="coin">
+      <circle r="52"/>
+      <circle r="36" fill="none" stroke-width="4"/>
+      <path d="M0 -20 L6 -6 L21 -5 L9 5 L13 20 L0 12 L-13 20 L-9 5 L-21 -5 L-6 -6 Z" stroke-width="4" stroke-linejoin="round"/>
+    </g>
+    <g id="star">
+      <path d="M0 -44 L12 -14 L44 -12 L19 8 L28 40 L0 22 L-28 40 L-19 8 L-44 -12 L-12 -14 Z" stroke-linejoin="round"/>
+    </g>
+  </defs>
+
+  <rect width="1000" height="1000" fill="#036D9A"/>
+  <circle cx="500" cy="500" r="430" fill="#0A82B5" opacity=".55"/>
+  <circle cx="500" cy="500" r="300" fill="#1996C9" opacity=".35"/>
+
+  <g stroke="#062B3E" stroke-width="7">
+    <!-- belakang -->
+    <use href="#coin" x="430" y="165" fill="#FDEA6F"/>
+    <use href="#gem" transform="translate(215 285) rotate(-18) scale(1.45)" fill="#CF0000"/>
+    <use href="#gem" transform="translate(790 275) rotate(16) scale(1.5)" fill="#EAF6FB"/>
+    <use href="#coin" x="150" y="560" fill="#FDEA6F"/>
+    <use href="#coin" x="855" y="560" fill="#FDEA6F"/>
+    <use href="#gem" transform="translate(210 785) rotate(24) scale(1.35)" fill="#EAF6FB"/>
+    <use href="#star" transform="translate(585 200) scale(.8)" fill="#CF0000"/>
+
+    <!-- stik -->
+    <path d="M272 318 C272 288 298 272 336 272 L664 272 C702 272 728 288 728 318 L790 568 C806 646 780 712 718 712 C676 712 650 690 626 658 L598 622 C584 604 566 598 546 598 L454 598 C434 598 416 604 402 622 L374 658 C350 690 324 712 282 712 C220 712 194 646 210 568 Z" fill="#FDEA6F" stroke-width="9" stroke-linejoin="round"/>
+    <path d="M308 292 C318 282 332 278 350 278 L650 278 C668 278 682 282 692 292" fill="none" stroke="#fff" stroke-opacity=".7" stroke-width="10" stroke-linecap="round"/>
+    <rect x="410" y="296" width="180" height="66" rx="24" fill="#8FCBE4" stroke-width="7"/>
+
+    <!-- d-pad -->
+    <circle cx="344" cy="446" r="86" fill="#036D9A" stroke-width="7"/>
+    <path d="M326 394 H362 V428 H396 V464 H362 V498 H326 V464 H292 V428 H326 Z" fill="#FDEA6F" stroke-width="6" stroke-linejoin="round"/>
+
+    <!-- tombol aksi -->
+    <circle cx="656" cy="446" r="86" fill="#036D9A" stroke-width="7"/>
+    <circle cx="656" cy="408" r="20" fill="#CF0000" stroke-width="5"/>
+    <circle cx="656" cy="484" r="20" fill="#FDEA6F" stroke-width="5"/>
+    <circle cx="618" cy="446" r="20" fill="#FDEA6F" stroke-width="5"/>
+    <circle cx="694" cy="446" r="20" fill="#CF0000" stroke-width="5"/>
+
+    <!-- tombol tengah dan analog -->
+    <rect x="455" y="440" width="38" height="16" rx="8" fill="#036D9A" stroke-width="5"/>
+    <rect x="507" y="440" width="38" height="16" rx="8" fill="#036D9A" stroke-width="5"/>
+    <circle cx="430" cy="530" r="44" fill="#CF0000" stroke-width="7"/>
+    <circle cx="430" cy="530" r="24" fill="#E84040" stroke-width="5"/>
+    <circle cx="570" cy="530" r="44" fill="#CF0000" stroke-width="7"/>
+    <circle cx="570" cy="530" r="24" fill="#E84040" stroke-width="5"/>
+
+    <!-- depan -->
+    <use href="#coin" x="440" y="838" fill="#FDEA6F"/>
+    <use href="#gem" transform="translate(790 790) rotate(-14) scale(1.45)" fill="#CF0000"/>
+    <use href="#star" transform="translate(585 800) scale(.7)" fill="#FDEA6F"/>
+  </g>
+</svg>

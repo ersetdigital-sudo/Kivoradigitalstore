@@ -29,7 +29,7 @@ export const PUBLIC_STATUS: Record<
   sudah_bayar: {
     label: "Pembayaran dicek admin",
     badgeClass: "badge b-wait",
-    dotClass: "bg-[#e0337a]",
+    dotClass: "bg-[#036d9a]",
   },
   sukses: {
     label: "Sukses",

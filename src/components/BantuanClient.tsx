@@ -23,12 +23,12 @@ const FAQS: Faq[] = [
   {
     cat: "bayar",
     q: "Berapa lama pembayaran dikonfirmasi?",
-    a: "Pembayaran dicek manual oleh tim. Setelah menekan tombol Saya sudah bayar, kirim kode PLY ke WhatsApp support supaya pesananmu cepat diverifikasi.",
+    a: "Pembayaran dicek manual oleh tim. Setelah menekan tombol Saya sudah bayar, kirim kode KVR ke WhatsApp support supaya pesananmu cepat diverifikasi.",
   },
   {
     cat: "bayar",
     q: "Kode QRIS-nya ada di mana?",
-    a: "Di halaman pembayaran yang muncul setelah checkout. Kalau halaman itu tertutup, buka lagi lewat kode PLY di halaman Cek Pesanan.",
+    a: "Di halaman pembayaran yang muncul setelah checkout. Kalau halaman itu tertutup, buka lagi lewat kode KVR di halaman Cek Pesanan.",
   },
   {
     cat: "bayar",
@@ -53,22 +53,22 @@ const FAQS: Faq[] = [
   {
     cat: "pesanan",
     q: "Item belum masuk padahal sudah bayar?",
-    a: "Cek status di halaman Cek Pesanan pakai kode PLY. Kalau transaksi gagal, dana dikembalikan otomatis ke metode pembayaran awal maksimal 1x24 jam.",
+    a: "Cek status di halaman Cek Pesanan pakai kode KVR. Kalau transaksi gagal, dana dikembalikan otomatis ke metode pembayaran awal maksimal 1x24 jam.",
   },
   {
     cat: "akun",
     q: "Apakah harus daftar akun?",
-    a: "Nggak perlu. Cukup isi ID game, pilih nominal, dan bayar. Simpan kode PLY untuk cek status kapan saja.",
+    a: "Nggak perlu. Cukup isi ID game, pilih nominal, dan bayar. Simpan kode KVR untuk cek status kapan saja.",
   },
   {
     cat: "akun",
     q: "Apakah akun game saya aman?",
-    a: "Kami hanya butuh ID publik, bukan password. Jangan pernah memberikan password akunmu ke siapa pun, termasuk yang mengaku dari Ploynora.",
+    a: "Kami hanya butuh ID publik, bukan password. Jangan pernah memberikan password akunmu ke siapa pun, termasuk yang mengaku dari Kivoradigitalstore.",
   },
   {
     cat: "akun",
     q: "Bagaimana cara cek pesanan?",
-    a: "Buka halaman Cek Pesanan, masukkan kode PLY yang muncul di halaman pembayaran. Status dan rincian pesanan langsung tampil.",
+    a: "Buka halaman Cek Pesanan, masukkan kode KVR yang muncul di halaman pembayaran. Status dan rincian pesanan langsung tampil.",
   },
 ];
 
@@ -180,7 +180,7 @@ export function BantuanClient() {
 
           <Link href="/lacak" className="card card-pk block p-6">
             <div className="dsp text-3xl">Cek status pesanan</div>
-            <p className="mt-1 font-semibold text-white/90">Pakai kode PLY kamu →</p>
+            <p className="mt-1 font-semibold text-white/90">Pakai kode KVR kamu →</p>
           </Link>
         </aside>
       </div>

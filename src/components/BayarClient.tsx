@@ -10,7 +10,6 @@ import { formatRp, PRODUCTS } from "@/lib/catalog";
 import {
   ADMIN_WA,
   PAID_MESSAGE,
-  QRIS_IMAGE,
   formatDate,
   waLink,
 } from "@/lib/store";
@@ -98,7 +97,7 @@ export function BayarClient() {
           <div className="text-6xl">🔍</div>
           <div className="dsp mt-3 text-4xl">Pesanan nggak ketemu</div>
           <p className="mut mt-2 font-semibold">
-            Kode pesanan tidak cocok dengan data server. Cek kode PLY kamu di
+            Kode pesanan tidak cocok dengan data server. Cek kode KVR kamu di
             halaman Cek Pesanan, atau buat pesanan baru.
           </p>
           <div className="mt-6 flex flex-wrap justify-center gap-3">
@@ -152,7 +151,7 @@ export function BayarClient() {
                       : "Selesaikan pembayaran"}
               </h1>
               <p className="mut mt-2 font-semibold">
-                {order.service} · {order.product}
+                {order.product.startsWith(order.service) ? order.product : `${order.service} · ${order.product}`}
               </p>
             </div>
           </div>
@@ -240,13 +239,23 @@ export function BayarClient() {
                     className="w-full max-w-[280px] shrink-0 overflow-hidden rounded-2xl bg-white p-3"
                     style={{ border: "3px solid var(--ink)" }}
                   >
-                    <img
-                      src={order.qris || QRIS_IMAGE}
-                      alt="Kode QRIS untuk pembayaran pesanan"
-                      className="block h-auto w-full rounded-xl"
-                      width={520}
-                      height={520}
-                    />
+                    {order.qris ? (
+                      <img
+                        src={order.qris}
+                        alt="Kode QRIS untuk pembayaran pesanan"
+                        className="block h-auto w-full rounded-xl"
+                        width={520}
+                        height={520}
+                      />
+                    ) : (
+                      <div
+                        className="grid aspect-square w-full place-items-center rounded-xl p-5 text-center text-sm font-bold leading-relaxed"
+                        style={{ background: "var(--sky2)" }}
+                      >
+                        Kode QRIS belum tersedia. Hubungi CS lewat WhatsApp untuk
+                        menyelesaikan pembayaran.
+                      </div>
+                    )}
                     <div className="mut mt-2 flex items-center justify-between text-[10px] font-bold uppercase tracking-wider">
                       <span>QRIS</span>
                       <span>semua bank &amp; e-wallet</span>
